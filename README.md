@@ -6,7 +6,7 @@ SIDReasoner is a generative recommendation framework that strengthens generative
 
 - A complete training pipeline, with each training stage integrated into an easy-to-run script.
 - Full training data, including our synthesized enriched alignment corpus.
-- Pretrained model checkpoints. (Coming soon.)
+- Pretrained model checkpoints.
 
 Our method demonstrates that, with improved SID–language alignment, effective recommendation reasoning can be achieved even under academic-scale training. By open-sourcing the pipeline, data, and checkpoints, we aim to facilitate further research on reasoning in generative recommendation.
 
@@ -29,7 +29,7 @@ The reinforcement learning stage (Stage 3) in this project is built on top of VE
 
 ## Dataset
 
-The datasets can be accessed via this [link](https://huggingface.co/datasets/heyingzhi/SIDReasoner_Amazon). Please download the dataset and ensure the dataset folder is placed under directory ./data/Amazon .
+The datasets can be accessed via this [link](https://drive.google.com/file/d/1S92QvaEs7aAhCwWOUovyb4y5P-pXwUhH/view?usp=sharing). Please download the dataset and ensure the dataset folder is placed under directory ./data/Amazon .
 
 ## Training
 
@@ -55,6 +55,11 @@ bash RL_training_script.sh
 ```
 
 The training logs are written to `./logs`.
+
+
+### Checkpoints
+
+To facilitate further research, we release our pretrained model checkpoints, which can be downloaded via this [link](https://huggingface.co/Sober-Clever/SIDReasoner-Models/tree/main).
 
 ## Evaluation
 
