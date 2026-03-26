@@ -8,7 +8,11 @@ SIDReasoner is a generative recommendation framework that strengthens generative
 - Full training data, including our synthesized enriched alignment corpus.
 - Pretrained model checkpoints.
 
-Our method demonstrates that, with improved SID–language alignment, effective recommendation reasoning can be achieved even under academic-scale training. By open-sourcing the pipeline, data, and checkpoints, we aim to facilitate further research on reasoning in generative recommendation.
+Our method demonstrates that, with improved SID–language alignment, effective recommendation reasoning can be achieved even under academic-scale training. SIDReasoner is able to associate SIDs with their underlying item semantics, produce coherent natural-language reasoning over interaction histories, and generate recommendations according to the reasoning process. By open-sourcing the pipeline, data, and checkpoints, we aim to facilitate further research on reasoning in generative recommendation.
+
+<p align="center">
+  <img src="assets/SIDReasoner-CaseStudy.png" width="100%" alt="Training">
+</p>
 
 ## Environments
 
@@ -83,6 +87,19 @@ python3 ./scripts/merge_fsdp_checkpoint.py \
   --output-dir ./checkpoints/RecRL_Reasoning/Office_Products_stage3_rl_Qwen3-1.7B/global_step_100/actor_merged
 ```
 
+
+## Citation
+
+If you find this work useful in your research, please consider citing:
+
+```bibtex
+@article{SIDReasoner,
+  title={Reasoning over Semantic IDs Enhances Generative Recommendation},
+  author={Yingzhi He and Yan Sun and Junfei Tan and Yuxin Chen and Xiaoyu Kong and Chunxu Shen and Xiang Wang and An Zhang and Tat-Seng Chua},
+  journal={arXiv preprint arXiv:2603.23183},
+  year={2026}
+}
+```
 
 ## Acknowledgement
 
