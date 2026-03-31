@@ -8,7 +8,6 @@ import os
 
 from transformers import GenerationConfig,  AutoTokenizer, BitsAndBytesConfig, AutoModelForCausalLM, LogitsProcessorList, TemperatureLogitsWarper
 from data_Qwen3 import EvalSidDataset
-from LogitProcessor import ConstrainedLogitsProcessor
 from accelerate import Accelerator
 import random
 import bitsandbytes as bnb

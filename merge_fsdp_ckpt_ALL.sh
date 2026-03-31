@@ -8,7 +8,7 @@
 
 set -euo pipefail
 
-CKPT_ROOT="/home/yingzhi/rec/verl/checkpoints/RecRL_Reasoning/Qwen3-1.7B_base_e2e-GPTGEN-EP3_stepRule-Industrial_and_Scientific"
+CKPT_ROOT="./checkpoints/RecRL/Qwen3-1.7B_Mix2-50K_BeamReason_Games"
 EVAL_INTERVAL=100
 
 if [ -z "$CKPT_ROOT" ]; then
