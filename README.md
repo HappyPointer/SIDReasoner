@@ -13,6 +13,9 @@ Our method demonstrates that, with improved SID–language alignment, effective 
 <p align="center">
   <img src="assets/SIDReasoner-CaseStudy.png" width="100%" alt="Training">
 </p>
+<p align="center">
+  <em>A case study of how SIDReasoner generates interpretable reasoning over SIDs.</em>
+</p>
 
 ## Environments
 
