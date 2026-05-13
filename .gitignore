@@ -22,3 +22,4 @@ slurm_output/*
 data_backup/*
 data/*
 rq/*
+.DS_Store

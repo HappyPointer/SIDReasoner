@@ -4,13 +4,6 @@ This repository contains the code for **"SIDReasoner - Reasoning over Semantic I
 
 SIDReasoner is a generative recommendation framework that strengthens recommendation models with reasoning over semantic IDs. The repository provides the training scripts, evaluation scripts, data download workflow, and a Snellius-ready environment setup.
 
-<p align="center">
-  <img src="assets/SIDReasoner-CaseStudy.png" width="100%" alt="SIDReasoner case study">
-</p>
-<p align="center">
-  <em>A case study of how SIDReasoner generates interpretable reasoning over SIDs.</em>
-</p>
-
 ## Snellius Quick Start
 
 Run these commands from a clean checkout.
@@ -35,22 +28,22 @@ make data
 Run the three training stages in order. Submit the next job only after the previous one has finished.
 
 ```bash
-sbatch sft_Qwen3_enrich.sh
-sbatch sft_reasoning_activation.sh
-sbatch RL_training_script.sh
+sbatch scripts/sft_Qwen3_enrich.sh
+sbatch scripts/sft_reasoning_activation.sh
+sbatch scripts/RL_training_script.sh
 ```
 
 Merge the RL checkpoint before thinking-mode evaluation. Adjust `global_step_100` if you want a different checkpoint.
 
 ```bash
-sbatch merge_fsdp_ckpt.sh ./checkpoints/RecRL_Reasoning/Office_Products_stage3_rl_Qwen3-1.7B/global_step_100/actor
+sbatch scripts/merge_fsdp_ckpt.sh ./checkpoints/RecRL_Reasoning/Office_Products_stage3_rl_Qwen3-1.7B/global_step_100/actor
 ```
 
 Run evaluation:
 
 ```bash
-sbatch evaluate_Qwen3.sh
-sbatch evaluate_Qwen3_think.sh
+sbatch scripts/evaluate_Qwen3.sh
+sbatch scripts/evaluate_Qwen3_think.sh
 ```
 
 Useful monitoring commands:
@@ -114,16 +107,16 @@ SIDReasoner follows a three-stage training pipeline.
 
 | Stage | Script |
 | --- | --- |
-| Stage 1: Supervised Fine-Tuning | `sft_Qwen3_enrich.sh` |
-| Stage 2: Reasoning Activation | `sft_reasoning_activation.sh` |
-| Stage 3: RL Training | `RL_training_script.sh` |
+| Stage 1: Supervised Fine-Tuning | `scripts/sft_Qwen3_enrich.sh` |
+| Stage 2: Reasoning Activation | `scripts/sft_reasoning_activation.sh` |
+| Stage 3: RL Training | `scripts/RL_training_script.sh` |
 
 Run on Snellius:
 
 ```bash
-sbatch sft_Qwen3_enrich.sh
-sbatch sft_reasoning_activation.sh
-sbatch RL_training_script.sh
+sbatch scripts/sft_Qwen3_enrich.sh
+sbatch scripts/sft_reasoning_activation.sh
+sbatch scripts/RL_training_script.sh
 ```
 
 The scripts write Slurm output to `slurm_output/` and training logs to `logs/`.
@@ -131,8 +124,8 @@ The scripts write Slurm output to `slurm_output/` and training logs to `logs/`.
 Common overrides:
 
 ```bash
-CATEGORY=Office_Products CUDA_DEVICES=0,1,2,3 NPROC_PER_NODE=4 sbatch sft_Qwen3_enrich.sh
-N_GPUS_PER_NODE=4 NNODES=1 sbatch RL_training_script.sh
+CATEGORY=Office_Products CUDA_DEVICES=0,1,2,3 NPROC_PER_NODE=4 sbatch scripts/sft_Qwen3_enrich.sh
+N_GPUS_PER_NODE=4 NNODES=1 sbatch scripts/RL_training_script.sh
 ```
 
 ## Evaluation
@@ -140,20 +133,20 @@ N_GPUS_PER_NODE=4 NNODES=1 sbatch RL_training_script.sh
 Evaluate non-thinking and thinking modes:
 
 ```bash
-sbatch evaluate_Qwen3.sh
-sbatch evaluate_Qwen3_think.sh
+sbatch scripts/evaluate_Qwen3.sh
+sbatch scripts/evaluate_Qwen3_think.sh
 ```
 
 Override GPU splits:
 
 ```bash
-CUDA_LIST="0 1" CUDA_LIST_CSV="0,1" sbatch evaluate_Qwen3_think.sh
+CUDA_LIST="0 1" CUDA_LIST_CSV="0,1" sbatch scripts/evaluate_Qwen3_think.sh
 ```
 
 The thinking-mode evaluation expects a merged Hugging Face checkpoint named `actor_merged`. If RL training only produced raw `actor` folders, merge one first:
 
 ```bash
-sbatch merge_fsdp_ckpt.sh ./checkpoints/RecRL_Reasoning/Office_Products_stage3_rl_Qwen3-1.7B/global_step_100/actor
+sbatch scripts/merge_fsdp_ckpt.sh ./checkpoints/RecRL_Reasoning/Office_Products_stage3_rl_Qwen3-1.7B/global_step_100/actor
 ```
 
 ## Development
